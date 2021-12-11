@@ -4,7 +4,7 @@ let container;
 let camera;
 let renderer;
 let scene;
-let house;
+let model;
 let size = 3000000/window.innerWidth;
 function init() {
   container = document.querySelector(".scene");
@@ -38,16 +38,16 @@ function init() {
 
   //Load Model
   let loader = new THREE.GLTFLoader();
-  loader.load("house/scene.gltf", function(gltf) {
+  loader.load("model/scene.gltf", function(gltf) {
     scene.add(gltf.scene);
-    house = gltf.scene.children[0];
+    model = gltf.scene.children[0];
     animate();
   });
 }
 
 function animate() {
   requestAnimationFrame(animate);
-  house.rotation.z += 0.005;
+  model.rotation.z += 0.005;
   renderer.render(scene, camera);
 }
 
