@@ -1,65 +1,77 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset=UTF-8 />
-    <link rel="stylesheet" type="text/css" href="style.css" />
-</head>
-<body>
-<script src="three.min.js"></script>
-<script src="GLTFLoader.js"></script>
-<script src="OrbitControls.js"></script>
-<script>
-    let scene, camera, renderer;
-    function init() {
-        scene = new THREE.Scene();
-        scene.background = new THREE.Color(0xffffff);
-        camera = new THREE.PerspectiveCamera(40,window.innerWidth/window.innerHeight,1,5000);
-        camera.rotation.y = 45/180*Math.PI;
-        camera.position.x = 800;
-        camera.position.y = 100;
-        camera.position.z = 1000;
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="scss/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
 
-        renderer = new THREE.WebGLRenderer({antialias:true});
-        renderer.setSize(window.innerWidth,window.innerHeight);
-        document.body.appendChild(renderer.domElement);
-
-
-        controls = new THREE.OrbitControls(camera,renderer.domElement);
-        controls.addEventListener('change', renderer);
-        hlight = new THREE.AmbientLight (0x404040,100);
-        scene.add(hlight);
-        directionalLight = new THREE.DirectionalLight(0xffffff,100);
-        directionalLight.position.set(0,1,0);
-        directionalLight.castShadow = true;
-        scene.add(directionalLight);
-        light = new THREE.PointLight(0xc4c4c4,10);
-        light.position.set(0,300,500);
-        scene.add(light);
-        light2 = new THREE.PointLight(0xc4c4c4,10);
-        light2.position.set(500,100,0);
-        scene.add(light2);
-        light3 = new THREE.PointLight(0xc4c4c4,10);
-        light3.position.set(0,100,-500);
-        scene.add(light3);
-        light4 = new THREE.PointLight(0xc4c4c4,10);
-        light4.position.set(-500,300,500);
-        scene.add(light4);
-
-
-
-        let loader = new THREE.GLTFLoader();
-        loader.load('scene.gltf', function(gltf){
-            car = gltf.scene.children[0];
-            car.scale.set(0.5,0.5,0.5);
-            scene.add(gltf.scene);
-            animate();
-        });
-    }
-    function animate() {
-        renderer.render(scene,camera);
-        requestAnimationFrame(animate);
-    }
-    init();
-</script>
-</body>
+    <hero>
+      <h1 align="center">3D Model of Saturn V</h1>
+      <div class="highlight" id="highlight">
+        
+      </div>
+      <div class="parts">
+          <ul >
+            <li><a href="#" id="0" onclick="highlighter(this.id)">First Stage</a></li><br><br><br>
+            <li><a href="#" id="1" onclick="highlighter(this.id)">Secound Stage</a></li><br><br><br>
+            <li><a href="#" id="2" onclick="highlighter(this.id)">Third Stage</a></li><br><br><br>
+            <li><a href="#" id="3" onclick="highlighter(this.id)">Instrument Unit</a></li><br><br><br>
+            <li><a href="#" id="4" onclick="highlighter(this.id)">Appolo Spacecraft</a></li><br><br><br>
+          </ul>
+      </div>
+      <div class="info" id="infoid">
+        <div class="firststage" id="firststageid">
+          <h2>FIRST STAGE</h2>
+          <p>
+            Power:	Five F-1 engines with combined thrust of 7.5 million pounds<br>
+            Propellants:<br>	
+            RP-1 kerosene, 214,200 gallons<br>
+            Liquid oxygen, 346,000 gallons<br>
+            Fueled weight of stage: 5,028,000 pounds</p>
+        </div>
+        <div class="secoundstage" id="secoundstageid">
+          <h2>SECOUND STAGE</h2>
+          <p>
+            Power:	Five J-2 engines with combined thrust of 1,000,000 pounds<br>
+            Propellants:<br>
+            Liquid hydrogen, 267,700 gallons<br>
+            Liquid oxygen, 87,400 gallons<br>
+            Fueled weight of stage: 1,064,000 pounds<br>
+          </p>
+        </div>
+        <div class="thirdstage" id="thirdstageid">
+        <h2>THIRD STAGE</h2>
+        <p>
+          Power:	One J-2 engine, 200,000 pounds thrust<br>
+          Propellants:<br>	
+          Liquid hydrogen, 66,900 gallons<br>
+          Liquid oxygen, 20,400 gallons<br>
+          Fueled weight of stage: 265,000 pounds<br>
+        </p>
+        </div>
+        <div class="instrument" id="instrumentid">
+          <h2>INSTRUMENT</h2>
+          <p>
+            Weight:	About 4,100 pounds
+          </p>
+        </div>
+        <div class="applospacecraft" id="applospacecraftid">
+          <h2>APPLOSPACECRAFT</h2>
+          <p>The spacecraft was in three parts: The conical Command Module where the crew ate and slept on its way to the moon and home; the Service Module, supplying electricity, maneuvering power and thrust to get home from lunar orbit, and water to the spacecraft; and the Lunar Module, or LM, a two-part, totally self-contained spacecraft that used its own rockets to land on and take off from the surface of the moon, and even served as its own launch pad.</p>
+        </div>
+      </div>
+      <div class="logo">
+        <a href="https://www.sserd.org/"><img src="https://www.sserd.org/wp-content/uploads/2020/06/sserd_logo_blue-300x192.png" alt="" srcset=""></a>
+      </div>
+    </hero>
+    <div class="scene"></div>
+    <script src="three.min.js"></script>
+    <script src="GLTFLoader.js"></script>
+    <script src="app.js"></script>
+    <script src="OrbitControls.js"></script>
+  </body>
 </html>
